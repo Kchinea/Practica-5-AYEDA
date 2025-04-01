@@ -1,0 +1,4 @@
+#ifndef QUICK_SORT_METHOD_H
+#define QUICK_SORT_METHOD_H
+
+#endif
