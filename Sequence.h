@@ -2,6 +2,7 @@
 #define SEQUENCE_H_
 
 #include <vector>
+#include "Position.h"
 
 template <class Key>
 class Sequence {
@@ -9,7 +10,8 @@ class Sequence {
   virtual bool Search(const Key&) const = 0;
   virtual bool Insert(const Key&) = 0;
   virtual ~Sequence() = default;
-  virtual Key Sequence<Key>::operator[](const Position&) const = 0;
+  virtual Key operator[](const unsigned) const = 0;
+  virtual Key& operator[](const unsigned) = 0;
 };
 
 #endif

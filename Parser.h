@@ -2,17 +2,19 @@
 #define PARSER_H
 
 #include <string>
+#include <stdexcept>
+#include <iostream>
 
 class Parser {
  public:
   Parser(int argc, char** argv);
-  ~Parser();
+  // ~Parser();
   void Parse();
-  std::string GetTypeOrdenation() const;
-  std::string GetFormIntroduction() const;
-  std::string GetFileName() const;
-  int GetSize() const;
-  bool GetTrace() const;
+  std::string GetTypeOrdenation() const { return typeOrdenation_; }
+  std::string GetFormIntroduction() const { return formIntroduction_; }
+  std::string GetFileName() const { return fileName_; }
+  int GetSize() const { return size_; }
+  bool GetTrace() const { return trace_; }
   int GetArgc() const;
   char** GetArgv() const;
   void PrintHelp() const;

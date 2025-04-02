@@ -1,12 +1,16 @@
 #ifndef SORT_METHOD_H
 #define SORT_METHOD_H
 
-template <class key>
+#include "StaticSequence.h"
+
+template <class Key>
 class SortMethod {
 public:
-  SortMethod(staticSequence<Key>, size);
-  ~SortMethod();
-  virtual void Sort() const = 0;
+  SortMethod(StaticSequence<Key>& sequence, unsigned size) : sequence_(sequence), size_(size) {}
+  virtual void Sort() = 0;
+protected:
+  StaticSequence<Key>& sequence_;
+  unsigned size_;
 };
 
 #endif
