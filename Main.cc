@@ -1,9 +1,6 @@
 #include "Parser.h"
 #include "StaticSequence.h"
-#include "ShakeMethod.h"
-#include "InsertionMethod.h"
-#include "HeapMethod.h"
-#include "QuickSortMethod.h"
+#include "Sorter.h"
 
 int main(int argc, char **argv) {
   Parser parser(argc, argv);
@@ -15,17 +12,15 @@ int main(int argc, char **argv) {
   }
 
   StaticSequence<int> mi_vector(3);
+
+  Sorter sorter(parser, mi_vector);
   StaticSequence<std::string> mi_vector_string(5);
   mi_vector.Insert(1);
   mi_vector.Insert(7);
   mi_vector.Insert(3);
-  std::cout << mi_vector[0] << std::endl;
   mi_vector[0] = 4;
-  std::cout << mi_vector[0] << std::endl;
-
-  // Asegúrate de pasar el tamaño
-  QuickSortMethod<int> shake(mi_vector, mi_vector.Size());
-  shake.Sort();
+  mi_vector.Print();
+  sorter.Sort();
   mi_vector.Print();
   return 0;
 }
