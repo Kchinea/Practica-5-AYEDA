@@ -12,28 +12,29 @@
 #include "HeapMethod.h"
 #include "QuickSortMethod.h"
 #include "ShellSortMethod.h"
+#include "Logger.h"
 
 
-template <class Key>  
+template <class Key>
 class Sorter {
  public:
-  Sorter(Parser& parser, StaticSequence<Key>& sequence)
-      : parser_(parser), sequence_(sequence) {}
+  Sorter(Parser& parser, StaticSequence<Key>& sequence, Logger<Key>& logger)
+      : parser_(parser), sequence_(sequence), logger_(logger) {}
   void Sort() {
     if(parser_.GetTypeOrdenation() == "Insertion") {
-      InsertionMethod<Key> insertion(sequence_, sequence_.Size());
+      InsertionMethod<Key> insertion(sequence_, sequence_.Size(), parser_.GetTrace(), logger_);
       insertion.Sort();
     } else if(parser_.GetTypeOrdenation() == "Shake") {
-      ShakeMethod<Key> shake(sequence_, sequence_.Size());
+      ShakeMethod<Key> shake(sequence_, sequence_.Size(), parser_.GetTrace(), logger_);
       shake.Sort();
     } else if(parser_.GetTypeOrdenation() == "Heap") {
-      HeapMethod<Key> heap(sequence_, sequence_.Size());
+      HeapMethod<Key> heap(sequence_, sequence_.Size(), parser_.GetTrace(), logger_);
       heap.Sort();
     } else if(parser_.GetTypeOrdenation() == "QuickSort") {
-      QuickSortMethod<Key> quick(sequence_, sequence_.Size());
+      QuickSortMethod<Key> quick(sequence_, sequence_.Size(), parser_.GetTrace(), logger_);
       quick.Sort();
     } else if(parser_.GetTypeOrdenation() == "Shell") {
-      ShellMethod<Key> shell(sequence_, sequence_.Size(), 0.5);
+      ShellMethod<Key> shell(sequence_, sequence_.Size(), parser_.GetTrace(), logger_, 0.5);
       shell.Sort();
     } else {
       throw std::invalid_argument("Método de ordenación no soportado.");
@@ -42,6 +43,7 @@ class Sorter {
   private:
     Parser& parser_;
     StaticSequence<Key>& sequence_;
+    Logger<Key>& logger_;
 };
 
 #endif

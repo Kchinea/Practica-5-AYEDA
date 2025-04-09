@@ -7,8 +7,8 @@
 template <class Key>
 class ShellMethod : public SortMethod<Key> {
  public:
-  ShellMethod(StaticSequence<Key>& sequence, unsigned size, double reductionFactor)
-    : SortMethod<Key>(sequence, size), reductionFactor_(reductionFactor) {
+  ShellMethod(StaticSequence<Key>& sequence, unsigned size, bool trace, Logger<Key>& logger, double reductionFactor)
+    : SortMethod<Key>(sequence, size, trace, logger), reductionFactor_(reductionFactor) {
     if (reductionFactor_ <= 0 || reductionFactor_ >= 1) {
       throw std::invalid_argument("El factor de reducción debe estar entre 0 y 1.");
     }
@@ -16,7 +16,7 @@ class ShellMethod : public SortMethod<Key> {
   void Sort() override {
     int n = this->sequence_.Size();
     int delta = n;
-    while (delta > 1) {
+    while (delta > 1) { 
       delta = static_cast<int>(delta * reductionFactor_); 
       if (delta < 1) delta = 1;
       deltasort(delta, n);

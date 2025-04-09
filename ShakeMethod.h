@@ -6,7 +6,8 @@
 template <class Key>
 class ShakeMethod : public SortMethod<Key> {
  public:
-  ShakeMethod(StaticSequence<Key>& sequence, unsigned size) : SortMethod<Key>(sequence, size) {}
+  ShakeMethod(StaticSequence<Key>& sequence, unsigned size, bool trace, Logger<Key>& logger) : 
+  SortMethod<Key>(sequence, size, trace, logger) {}
 
   void Sort() override {
     int n = this->sequence_.Size();

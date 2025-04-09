@@ -7,7 +7,8 @@
 template <class Key>
 class HeapMethod : public SortMethod<Key> {
  public:
-  HeapMethod(StaticSequence<Key>& sequence, unsigned size) : SortMethod<Key>(sequence, size) {}
+  HeapMethod(StaticSequence<Key>& sequence, unsigned size, bool trace, Logger<Key>& logger): 
+  SortMethod<Key>(sequence, size, trace, logger) {}
   void Sort() override {
     int n = this->sequence_.Size();
     for (int i = (n / 2) - 1; i >= 0; i--) {

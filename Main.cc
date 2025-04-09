@@ -2,7 +2,8 @@
 #include "StaticSequence.h"
 #include "Sorter.h"
 #include "NIF.h"
-#include <fstream>  // Para manejar archivos
+#include <fstream> 
+#include "FactoryNIF.h"
 
 int main(int argc, char **argv) {
   Parser parser(argc, argv);
@@ -14,7 +15,8 @@ int main(int argc, char **argv) {
   }
   
   StaticSequence<NIF> mi_vector(parser.GetSize()); 
-  Sorter sorter(parser, mi_vector);
+  Logger<NIF> logger(parser.GetTrace());
+  Sorter sorter(parser, mi_vector, logger);
   if(parser.GetFormIntroduction() == "file") {
     std::ifstream file(parser.GetFileName());
     if (!file.is_open()) {
@@ -25,8 +27,6 @@ int main(int argc, char **argv) {
     while (!mi_vector.IsFull() && std::getline(file, input)) {
       NIF nuevo_nif(input);
       mi_vector.Insert(nuevo_nif);
-      sorter.Sort();
-      mi_vector.Print();
     }
   
     file.close();
@@ -37,9 +37,19 @@ int main(int argc, char **argv) {
       std::cin >> input;
       NIF nuevo_nif(input);
       mi_vector.Insert(nuevo_nif);
-      sorter.Sort();
-      mi_vector.Print();
     }
+  } else if (parser.GetFormIntroduction() == "random") {
+    FactoryNIF factory;
+    for (int i = 0; i < parser.GetSize(); ++i) {
+      NIF nuevo_nif = factory.Generate();
+      mi_vector.Insert(nuevo_nif);
+    }
+  } else {
+    std::cerr << "Error: Formato de introducción no soportado." << std::endl;
+    return 1;
   }
+  mi_vector.Print();
+  sorter.Sort();
+  mi_vector.Print();
   return 0;
 }

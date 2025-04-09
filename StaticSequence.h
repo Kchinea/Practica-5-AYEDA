@@ -38,7 +38,7 @@ bool StaticSequence<Key>::Search(const Key& key) const {
 template <class Key>
 bool StaticSequence<Key>::Insert(const Key& key) {
   if (IsFull()) return false;
-  data_[0] = key;
+  data_[to_insert_++] = key;
   return true;
 }
 
@@ -51,5 +51,6 @@ template <class Key>
 Key& StaticSequence<Key>::operator[](const unsigned pos) {
   return data_[pos];
 }
+
 
 #endif

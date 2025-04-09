@@ -6,8 +6,8 @@
 template <class Key>
 class QuickSortMethod : public SortMethod<Key> {
  public:
-  QuickSortMethod(StaticSequence<Key>& sequence, unsigned size) 
-    : SortMethod<Key>(sequence, size) {}
+  QuickSortMethod(StaticSequence<Key>& sequence, unsigned size, bool trace, Logger<Key>& logger) 
+    : SortMethod<Key>(sequence, size, trace, logger) {}
   void Sort() override {
     QuickSort(0, this->sequence_.Size() - 1);
   }
@@ -16,6 +16,7 @@ class QuickSortMethod : public SortMethod<Key> {
     int i = ini, f = fin;
     Key p = this->sequence_[(i + f) / 2];
     while (i <= f) {
+      this->logger_.PrintSequence(this->sequence_, i);
       while (this->sequence_[i] < p) i++;
       while (this->sequence_[f] > p) f--;
       if (i <= f) {
