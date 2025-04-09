@@ -1,6 +1,8 @@
 #include "Parser.h"
 #include "StaticSequence.h"
 #include "Sorter.h"
+#include "NIF.h"
+#include <fstream>  // Para manejar archivos
 
 int main(int argc, char **argv) {
   Parser parser(argc, argv);
@@ -10,19 +12,34 @@ int main(int argc, char **argv) {
     std::cerr << e.what() << std::endl;
     return 1;
   }
-
-  StaticSequence<int> mi_vector(3);
-
+  
+  StaticSequence<NIF> mi_vector(parser.GetSize()); 
   Sorter sorter(parser, mi_vector);
-  StaticSequence<std::string> mi_vector_string(5);
-  mi_vector.Insert(1);
-  mi_vector.Insert(7);
-  mi_vector.Insert(3);
-  mi_vector[0] = 4;
-  mi_vector.Print();
-  sorter.Sort();
-  mi_vector.Print();
+  if(parser.GetFormIntroduction() == "file") {
+    std::ifstream file(parser.GetFileName());
+    if (!file.is_open()) {
+      std::cerr << "Error al abrir el archivo " << parser.GetFileName() << std::endl;
+      return 1;
+    }
+    std::string input;
+    while (!mi_vector.IsFull() && std::getline(file, input)) {
+      NIF nuevo_nif(input);
+      mi_vector.Insert(nuevo_nif);
+      sorter.Sort();
+      mi_vector.Print();
+    }
+  
+    file.close();
+  } else if (parser.GetFormIntroduction() == "manual") {
+    while(!mi_vector.IsFull()) {
+      std::cout << "Añada un DNI al almacenamiento:" ;
+      std::string input;
+      std::cin >> input;
+      NIF nuevo_nif(input);
+      mi_vector.Insert(nuevo_nif);
+      sorter.Sort();
+      mi_vector.Print();
+    }
+  }
   return 0;
 }
-
-

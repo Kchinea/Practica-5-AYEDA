@@ -47,6 +47,10 @@
     "new": "cpp",
     "numbers": "cpp",
     "streambuf": "cpp",
-    "typeinfo": "cpp"
+    "typeinfo": "cpp",
+    "charconv": "cpp",
+    "ctime": "cpp",
+    "fstream": "cpp",
+    "variant": "cpp"
   }
 }

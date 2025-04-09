@@ -11,16 +11,13 @@ class InsertionMethod : public SortMethod<Key> {
 
   void Sort() override {
     int n = this->sequence_.Size();
-    // Insertion sort
     for (int i = 1; i < n; i++) {
-      Key x = this->sequence_[i];  // Elemento a insertar
+      Key x = this->sequence_[i]; 
       int j = i - 1;
-      // Encuentra la posición de inserción
       while (j >= 0 && x < this->sequence_[j]) {
-        this->sequence_[j + 1] = this->sequence_[j];  // Desplaza el elemento
+        this->sequence_[j + 1] = this->sequence_[j];
         j--;
       }
-      // Coloca el elemento en su posición correcta
       this->sequence_[j + 1] = x;
     }
   }

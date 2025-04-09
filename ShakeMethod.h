@@ -12,9 +12,8 @@ class ShakeMethod : public SortMethod<Key> {
     int n = this->sequence_.Size();
     int left = 0;
     int right = n - 1;
-    int cam;  // El "cam" como en el ejemplo
+    int cam; 
     while (left < right) {
-      // Pasada de izquierda a derecha
       cam = left;
       for (int i = left; i < right; i++) {
         if (this->sequence_[i] > this->sequence_[i + 1]) {
@@ -25,7 +24,6 @@ class ShakeMethod : public SortMethod<Key> {
         }
       }
       right = cam;
-      // Pasada de derecha a izquierda
       cam = right;
       for (int i = right; i > left; i--) {
         if (this->sequence_[i] < this->sequence_[i - 1]) {

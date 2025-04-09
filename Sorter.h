@@ -14,7 +14,7 @@
 #include "ShellSortMethod.h"
 
 
-template <class Key>
+template <class Key>  
 class Sorter {
  public:
   Sorter(Parser& parser, StaticSequence<Key>& sequence)

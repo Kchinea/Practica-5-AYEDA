@@ -2,7 +2,6 @@
 #define SEQUENCE_H_
 
 #include <vector>
-#include "Position.h"
 
 template <class Key>
 class Sequence {

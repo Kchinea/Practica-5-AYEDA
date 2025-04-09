@@ -30,7 +30,7 @@ void Parser::ParseArgs() {
       if (i + 1 < argc_) {
         std::string initValue = argv_[++i];
         this->formIntroduction_ = initValue;
-        this->fileName_ = argv_[i+1];
+        if(initValue == "file") this->fileName_ = argv_[++i];
         std::cout << "Init: " << initValue << std::endl;
       } else {
         throw std::invalid_argument("Missing value for -init");
