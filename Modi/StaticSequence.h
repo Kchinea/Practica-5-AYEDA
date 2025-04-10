@@ -7,7 +7,7 @@ template <class Key>
 class StaticSequence : public Sequence<Key> {
   public:
     StaticSequence(const unsigned blocksize) : data_(blocksize), blocksize_(blocksize), to_insert_(0) {}
-
+    StaticSequence(const StaticSequence& other) : data_(other.data_), blocksize_(other.blocksize_), to_insert_(other.to_insert_) {}
     bool Search(const Key&) const;
     bool Insert(const Key&);
     bool IsFull() const { return to_insert_ == blocksize_; }

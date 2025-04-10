@@ -24,6 +24,7 @@ public:
       this->sequence_[0] = this->sequence_[i];
       this->sequence_[i] = tmp;
       this->logger_.PrintSwap(this->sequence_, 0, i);
+      this->swaps_++;
       this->logger_.PrintSequence(this->sequence_, i);
       baja(0, i);
     }
@@ -38,6 +39,7 @@ private:
     {
       h2 = h1 + 1;
       h = (h2<n &&this->sequence_[h2]> this->sequence_[h1]) ? h2 : h1;
+      this->comparisons_++;
       if (this->sequence_[i] >= this->sequence_[h])
       {
         break;
@@ -45,6 +47,7 @@ private:
       Key tmp = this->sequence_[i];
       this->sequence_[i] = this->sequence_[h];
       this->sequence_[h] = tmp;
+      this->swaps_++;
       this->logger_.PrintSwapDown(this->sequence_, i, h);
       this->logger_.PrintSequence(this->sequence_, i);
       i = h;
@@ -52,4 +55,4 @@ private:
   }
 };
 
-#endif // HEAPMETHOD_H
+#endif 

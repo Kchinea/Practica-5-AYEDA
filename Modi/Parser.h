@@ -8,7 +8,6 @@
 class Parser {
  public:
   Parser(int argc, char** argv);
-  // ~Parser();
   void Parse();
   std::string GetTypeOrdenation() const { return typeOrdenation_; }
   std::string GetFormIntroduction() const { return formIntroduction_; }

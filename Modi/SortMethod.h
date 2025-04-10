@@ -11,10 +11,14 @@ public:
   SortMethod(StaticSequence<Key>& sequence, unsigned size, bool trace, Logger<Key>& logger) : 
   sequence_(sequence), size_(size), trace_(trace), logger_(logger){}
   virtual void Sort() = 0;
+  unsigned GetComparisons() const { return comparisons_; }
+  unsigned GetSwaps() const { return swaps_; }
 protected:
   StaticSequence<Key>& sequence_;
   unsigned size_;
   bool trace_;
+  unsigned comparisons_ = 0;
+  unsigned swaps_ = 0;
   Logger<Key>& logger_;
 };
 

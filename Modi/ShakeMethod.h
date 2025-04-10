@@ -21,8 +21,10 @@ public:
       for (int i = left; i < right; i++)
       {
         this->logger_.PrintComparison(this->sequence_, this->sequence_[i], this->sequence_[i + 1]);
+        this->comparisons_++;
         if (this->sequence_[i] > this->sequence_[i + 1])
         {
+          this->swaps_++;
           Key temp = this->sequence_[i];
           this->sequence_[i] = this->sequence_[i + 1];
           this->sequence_[i + 1] = temp;
@@ -35,9 +37,11 @@ public:
       cam = right;
       for (int i = right; i > left; i--)
       {
-        this->logger_.PrintComparison(this->sequence_, this->sequence_[i], this->sequence_[i + 1]);
+        this->comparisons_++;
+        this->logger_.PrintComparison(this->sequence_, this->sequence_[i], this->sequence_[i - 1]);
         if (this->sequence_[i] < this->sequence_[i - 1])
         {
+          this->swaps_++;
           Key temp = this->sequence_[i];
           this->sequence_[i] = this->sequence_[i - 1];
           this->sequence_[i - 1] = temp;

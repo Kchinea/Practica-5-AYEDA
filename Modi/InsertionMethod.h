@@ -18,14 +18,18 @@ public:
       this->logger_.PrintSequence(this->sequence_, i);
       Key x = this->sequence_[i];
       int j = i - 1;
-      while (j >= 0 && x < this->sequence_[j])
+      while (j >= 0 )
       {
+        this->comparisons_++;
         this->logger_.PrintComparison(this->sequence_, x, this->sequence_[j]);
+        if (!(x < this->sequence_[j])) break;
+        this->swaps_++;
         this->sequence_[j + 1] = this->sequence_[j];
         j--;
       }
       this->logger_.PrintMovement(this->sequence_, j + 1, x);
       this->sequence_[j + 1] = x;
+      this->swaps_++;
     }
   }
 };

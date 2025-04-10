@@ -13,7 +13,6 @@ void Parser::ParseArgs() {
         std::string sizeValue = argv_[++i];
         this->size_ = std::stoi(sizeValue);
         std::cout << "Size: " << sizeValue << std::endl;
-        // Process sizeValue
       } else {
         throw std::invalid_argument("Missing value for -size");
       }
@@ -22,7 +21,6 @@ void Parser::ParseArgs() {
         std::string ordValue = argv_[++i];
         this->typeOrdenation_ = ordValue;
         std::cout << "Ord: " << ordValue << std::endl;
-        // Process ordValue
       } else {
         throw std::invalid_argument("Missing value for -ord");
       }

@@ -23,12 +23,19 @@ private:
     this->logger_.PrintSequence(this->sequence_, i);
     while (i <= f)
     {
-      while (this->sequence_[i] < p)
+      while (this->sequence_[i] < p){
+        this->comparisons_++;
         i++;
-      while (this->sequence_[f] > p)
+      }
+      this->comparisons_++;
+      while (this->sequence_[f] > p){
         f--;
+        this->comparisons_++;
+      }
+      this->comparisons_++;
       if (i <= f)
       {
+        this->swaps_++;
         this->logger_.PrintSwap(this->sequence_, i, f);
         Key tmp = this->sequence_[i];
         this->sequence_[i] = this->sequence_[f];
@@ -50,4 +57,4 @@ private:
     }
   }
 };
-#endif // QUICKSORT_METHOD_H
+#endif

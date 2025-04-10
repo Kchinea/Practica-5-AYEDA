@@ -32,6 +32,7 @@ long unsigned int Persona::size() const
 
 std::ostream &operator<<(std::ostream &os, const Persona &persona)
 {
-  os << "Nombre: " << persona.getName() << ", Apellidos: " << persona.getLastName() << ", NIF: " << persona.getNIF().getNumber();
+  os << "[ Nombre: " << persona.getName() << ", Apellidos: " << persona.getLastName() << ", NIF: " << persona.getNIF().getNumber() << " ]";
+  // os << persona.getNIF().getNumber(); para mayor limpieza a la hora de depurar
   return os;
 }

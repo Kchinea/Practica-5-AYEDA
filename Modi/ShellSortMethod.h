@@ -42,10 +42,15 @@ private:
       this->logger_.PrintComparison(this->sequence_, x, this->sequence_[j - delta]);
       while (j >= delta && x < this->sequence_[j - delta])
       {
+        this->comparisons_++;
         this->sequence_[j] = this->sequence_[j - delta];
         j -= delta;
       }
       this->logger_.PrintMovement(this->sequence_, j, x);
+      if (j != i) {
+        this->swaps_++;
+      }
+      this->comparisons_++;
       this->sequence_[j] = x;
     }
   }

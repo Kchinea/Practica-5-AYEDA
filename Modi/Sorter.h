@@ -24,18 +24,23 @@ class Sorter {
     if(parser_.GetTypeOrdenation() == "Insertion") {
       InsertionMethod<Key> insertion(sequence_, sequence_.Size(), parser_.GetTrace(), logger_);
       insertion.Sort();
+      sequence_.Print();
     } else if(parser_.GetTypeOrdenation() == "Shake") {
       ShakeMethod<Key> shake(sequence_, sequence_.Size(), parser_.GetTrace(), logger_);
       shake.Sort();
+      sequence_.Print();
     } else if(parser_.GetTypeOrdenation() == "Heap") {
       HeapMethod<Key> heap(sequence_, sequence_.Size(), parser_.GetTrace(), logger_);
       heap.Sort();
+      sequence_.Print();
     } else if(parser_.GetTypeOrdenation() == "QuickSort") {
       QuickSortMethod<Key> quick(sequence_, sequence_.Size(), parser_.GetTrace(), logger_);
       quick.Sort();
+      sequence_.Print();
     } else if(parser_.GetTypeOrdenation() == "Shell") {
       ShellMethod<Key> shell(sequence_, sequence_.Size(), parser_.GetTrace(), logger_, 0.5);
       shell.Sort();
+      sequence_.Print();
     } else {
       throw std::invalid_argument("Método de ordenación no soportado.");
     }
